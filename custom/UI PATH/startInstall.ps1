@@ -62,7 +62,7 @@ try
     $SoftwarePath = "C:\SoftwaresDump\UiPathStudio.msi"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump\UiPathStudio.msi" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
