@@ -57,19 +57,19 @@ trap
 
 try
 {
-    $NewDIR = "C:\SoftwaresDump\QTP12.5"
-    $SoftwareWebLink = "https://download.microsoft.com/download/e/4/c/e4c393a9-8fff-441b-ad3a-3f4040317a1f/vs_community.exe"
-    $SoftwarePath = "C:\SoftwaresDump\QTP12.5\vs_community.exe"
+    $NewDIR = "C:\SoftwaresDump"
+    $SoftwareWebLink = "http://dl1.filehippo.com/b273a1b9e976427c834340ccdd2fa269/mysql-5.6.36-win32.msi?ttl=1496934475&token=b55ab79135371d569b4cf43c80688e19"
+    $SoftwarePath = "C:\SoftwaresDump\mysql-5.6.36-win32.msi"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
    
 
  Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\QTP12.5\vs_community.exe" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\mysql-5.6.36-win32.msi" -ArgumentList '/q' -Wait 
 
     
 
