@@ -1,0 +1,15 @@
+{
+ "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
+  "title": "visualstudio 2015",
+  "publisher": "VS",
+  "description": "Install community with default options",
+  "tags": [
+    "Windows",
+   "Community 2015"
+  ],
+  "iconUri": "",
+  "targetOsType": "Windows",
+  "runCommand": {
+    "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./startInstall.ps1\"')]"
+  }
+}
