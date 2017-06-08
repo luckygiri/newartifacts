@@ -57,19 +57,19 @@ trap
 
 try
 {
-    $NewDIR = "C:\SoftwaresDump\QTP12.5"
-    $SoftwareWebLink = "https://download.microsoft.com/download/e/4/c/e4c393a9-8fff-441b-ad3a-3f4040317a1f/vs_community.exe"
-    $SoftwarePath = "C:\SoftwaresDump\QTP12.5\vs_community.exe"
+    $NewDIR = "C:\SoftwaresDump"
+    $SoftwareWebLink = "http://dl2.filehippo.com/d16ccce1c8ab424491e1c5db426ce03b/jdk-8u131-windows-x64.exe?ttl=1496935762&token=e9b18a1b17c0c575c727092aad11e8ae"
+    $SoftwarePath = "C:\SoftwaresDump\jdk-8u131-windows-x64.exe"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
    
 
  Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\QTP12.5\vs_community.exe" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\jdk-8u131-windows-x64.exe" -ArgumentList '/q' -Wait 
 
     
 

@@ -1,30 +1,81 @@
-$NewDIR = "C:\SoftwaresDump\QTP12.5"
+[CmdletBinding()]
+param(
+)
 
-$SoftwareWebLink = "https://download.microsoft.com/download/a/e/1/ae184ba4-5926-4be6-a036-17b318960453/tfsserver2017.1.exe"
+###################################################################################################
 
+#
+# PowerShell configurations
+#
 
-$SoftwarePath = "C:\SoftwaresDump\QTP12.5\tfsserver2017.1.exe"
+# NOTE: Because the $ErrorActionPreference is "Stop", this script will stop on first failure.
+#       This is necessary to ensure we capture errors inside the try-catch-finally block.
+$ErrorActionPreference = "Stop"
 
+# Ensure we set the working directory to that of the script.
+pushd $PSScriptRoot
 
+###################################################################################################
 
-# Create temp directory
+#
+# Functions used in this script.
+#
 
-New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -ErrorAction SilentlyContinue
+function Handle-LastError
+{
+    $message = $error[0].Exception.Message
+    if ($message)
+    {
+        Write-Host -Object "ERROR: $message" -ForegroundColor Red
+    }
+    
+    # IMPORTANT NOTE: Throwing a terminating error (using $ErrorActionPreference = "Stop") still
+    # returns exit code zero from the PowerShell script when using -File. The workaround is to
+    # NOT use -File when calling this script and leverage the try-catch-finally block and return
+    # a non-zero exit code from the catch block.
+    exit -1
+}
 
-# Download
+###################################################################################################
 
-(New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
+#
+# Handle all errors in this script.
+#
 
-(New-Object System.Net.WebClient).DownloadFile("http://artifacts.g7crm4l.org/softwares/QTP12.5/tfssetup.exe", "C:\SoftwaresDump\QTP12.5\tfssetup.exe")
+trap
+{
+    # NOTE: This trap will handle all errors. There should be no need to use a catch below in this
+    #       script, unless you want to ignore a specific error.
+    Handle-LastError
+}
 
-$username = 'vscode'
-$password = 'g7cr@123456789'
+###################################################################################################
 
-$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword
-Start-Process powershell.exe -ExecutionPolicy  unrestricted
-Start-Process "C:\SoftwaresDump\QTP12.5\tfsserver2017.1.exe" 
-Start-Process powershell.exe -ExecutionPolicy  unrestricted
+#
+# Main execution block.
+#
 
-Start-Process "C:\SoftwaresDump\QTP12.5\tfssetup.exe" -wait
+try
+{
+    $NewDIR = "C:\SoftwaresDump"
+    $SoftwareWebLink = "https://download.microsoft.com/download/a/e/1/ae184ba4-5926-4be6-a036-17b318960453/tfsserver2017.1.exe"
+    $SoftwarePath = "C:\SoftwaresDump\tfsserver2017.1.exe"
 
+    Write-Output 'Preparing temp directory ...'
+    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
+
+    Write-Output 'Downloading pre-requisite files ...'
+    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
+   
+
+Write-Output 'Installing ...'
+Start-Process "C:\SoftwaresDump\tfsserver2017.1.exe" -ArgumentList '/q' -Wait 
+
+    
+
+    Write-Output 'Done!'
+}
+finally
+{
+    popd
+}
