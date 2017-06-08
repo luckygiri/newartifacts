@@ -58,8 +58,8 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-windows-x64.exe?AuthParam=1496919650_b47fb60881ce53b09bcb403006d5d534"
-    $SoftwarePath = "C:\SoftwaresDump\jdk-8u112-windows-x64.exe"
+    $SoftwareWebLink = "http://dl2.filehippo.com/d16ccce1c8ab424491e1c5db426ce03b/jdk-8u131-windows-x64.exe?ttl=1496935762&token=e9b18a1b17c0c575c727092aad11e8ae"
+    $SoftwarePath = "C:\SoftwaresDump\jdk-8u131-windows-x64.exe"
 
     Write-Output 'Preparing temp directory ...'
     New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
@@ -69,7 +69,7 @@ try
    
 
  Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\jdk-8u112-windows-x64.exe" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\jdk-8u131-windows-x64.exe" -ArgumentList '/q' -Wait 
 
     
 
