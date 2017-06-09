@@ -68,6 +68,8 @@ try
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
+     (New-Object System.Net.WebClient).DownloadFile("https://download.microsoft.com/download/D/1/3/D13E3150-3BB2-4B22-9D8A-47EE2D609FFF/Windows8.1-KB2999226-x64.msu", "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu")
+    
        #Extracting
     $shell = New-Object -ComObject shell.application
     $zip = $shell.NameSpace("$SOftwarePath")
@@ -95,13 +97,12 @@ Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x86.ms
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\VC2015Prerequisite.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/q' -Wait
 
 
 
 
-Write-Output 'Installing UFT.....'
 
-Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/s'  -Wait  
  
 
 
