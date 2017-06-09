@@ -97,7 +97,7 @@ Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x86.ms
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\VC2015Prerequisite.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/quiet' -Wait
 
 
 
