@@ -57,21 +57,19 @@ trap
 
 try
 {
-    $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "https://download.microsoft.com/download/a/e/1/ae184ba4-5926-4be6-a036-17b318960453/tfsserver2017.1.exe"
-    $SoftwarePath = "C:\SoftwaresDump\tfsserver2017.1.exe"
+ 
+ 
+    $NewDIR = "C:\SoftwaresDump\QTP12.5"
+    $SoftwarePath = "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN" -ItemType Directory -Force | Out-Null
 
-    Write-Output 'Downloading pre-requisite files ...'
-    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
    
 
-Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\tfsserver2017.1.exe" -ArgumentList '/q' -Wait 
+Write-Output 'Installing UFT.....'
 
-    
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/s'  -Wait  
 
     Write-Output 'Done!'
 }
