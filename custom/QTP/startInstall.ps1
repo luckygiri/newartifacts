@@ -81,6 +81,7 @@ try
 
 
 Write-Output 'Installing prerequesties ...'
+Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/quiet' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\dotnet35_sp1\dotnetfx35_sp1.exe" -ArgumentList '/q' -Wait 
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\dotnet45\dotnetfx45_full_x86_x64.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\msade2010\AccessDatabaseEngine.exe" -ArgumentList '/q' -Wait
@@ -97,7 +98,6 @@ Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x86.ms
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\VC2015Prerequisite.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/quiet' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\ALMPlugin\MSI\HP_Unified_Functional_Add-in_for_ALM.msi" -ArgumentList '/quiet' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/s'  -Wait   
    
