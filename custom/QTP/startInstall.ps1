@@ -98,16 +98,9 @@ Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x64\vcredist
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\VC2015Prerequisite.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/quiet' -Wait
-
-
-
-
-
- 
-
-
-    
-
+Start-Process "C:\SoftwaresDump\QTP12.5\ALMPlugin\MSI\HP_Unified_Functional_Add-in_for_ALM.msi" -ArgumentList '/quiet' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/s'  -Wait   
+   
     Write-Output 'Done!'
 }
 finally
