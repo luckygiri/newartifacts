@@ -57,19 +57,46 @@ trap
 
 try
 {
-    $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "https://download.microsoft.com/download/a/e/1/ae184ba4-5926-4be6-a036-17b318960453/tfsserver2017.1.exe"
-    $SoftwarePath = "C:\SoftwaresDump\tfsserver2017.1.exe"
+ 
+     Write-Output 'Preparing temp directory ...'
+    New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -Force | Out-Null
 
-    Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
+#Extracting
+$shell = New-Object -ComObject shell.application
+$zip = $shell.NameSpace("$SOftwarePath")
+foreach ($item in $zip.items()) {
+  $shell.Namespace("$NewDIR").CopyHere($item)
+}
 
-    Write-Output 'Downloading pre-requisite files ...'
-    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
-   
 
-Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\tfsserver2017.1.exe" -ArgumentList '/q' -Wait 
+Write-Output 'Installing prerequesties ...'
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\dotnet35_sp1\dotnetfx35_sp1.exe" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\dotnet45\dotnetfx45_full_x86_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\msade2010\AccessDatabaseEngine.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2008_sp1_redist_V9030729\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2010_redist\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2010_X64_redist\vcredist_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2012_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2012_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vs2008_shell_sp1_isolated_redist\vs_shell_isolated.enu.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse20sp3\MicrosoftWSE2.0SP3Runtime.msi" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse30\MicrosoftWSE3.0Runtime.msi" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x64.msi" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x86.msi" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\VC2015Prerequisite.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
+
+
+
+
+
+
+Write-Output 'Installing UFT.....'
+
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q' -Wait  
+ 
+
 
     
 
