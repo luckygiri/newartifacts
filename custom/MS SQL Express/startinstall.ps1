@@ -51,41 +51,6 @@ trap
 
 ###################################################################################################
 
-#
-# Main execution block.
-#
-
-try
-{
-  #
-
-#
-# Before running the script, set the execution policy
-Set-ExecutionPolicy RemoteSigned
-#
-
-#Helper Functions
-function Create-Folder {
-    Param ([string]$path)
-    if ((Test-Path $path) -eq $false) 
-    {
-        Write-Host "$path doesn't exist. Creating now.."
-        New-Item -ItemType "directory" -Path $path
-    }
-}
-
-function Download-File{
-    Param ([string]$src, [string] $dst)
-
-    (New-Object System.Net.WebClient).DownloadFile($src,$dst)
-    #Invoke-WebRequest $src -OutFile $dst
-}
-
-function WaitForFile($File) {
-  while(!(Test-Path $File)) {    
-    Start-Sleep -s 10;   
-  }  
-} 
 
 
 #Setup Folders
@@ -175,24 +140,6 @@ Start-Process -FilePath "$setupFolder\SSDTSetup.exe" -ArgumentList '/INSTALLALL=
 
 Add-PSSnapin SqlServerCmdletSnapin* -ErrorAction SilentlyContinue   
 Import-Module SQLPS -WarningAction SilentlyContinue  
-
-$AttachCmd = @"  
-USE [master]  CREATE DATABASE [AdventureWorks2012] ON (FILENAME ='$setupFolder\..\datasets\AdventureWorks2012_Data.mdf') for ATTACH  
-"@  
-Invoke-Sqlcmd $attachCmd -QueryTimeout 3600 -ServerInstance $env:computername\CB2016SQLSERVER 
-If($?)  
-{  
-       Write-Host 'Attached database sucessfully!'  
-}  
-else  
-{  
-       Write-Host 'Attaching Failed!'  
-}
-
-
-Write-Host 'Installation completed.' 
-
-    
 
     Write-Output 'Done!'
 }
