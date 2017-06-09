@@ -58,15 +58,26 @@ trap
 try
 {
  
-     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -Force | Out-Null
-
-#Extracting
+  $NewDIR = "C:\SoftwaresDump\QTP12.5"
+    $SoftwareWebLink = "http://h30537.www3.hpe.com/prdownloads/UFT1400_DVD.zip?downloadid=Wu6ezJnM633sYkwgWfU8lTaFcDNYpqzL9L3-Kq6nB4E0VkoTjOvG7q9bBg6L-q3_NJS0cpG0ySDOo8VWqTIagwwgzAJcYe8oZXk32s_GIzgV7S3UChkKlZsFQfNOd1IO&merchantId=PRONQ_TRY&dlm=ON&rnid=1.0&bpid=SGBU&egid=F&__dlk__=1497078000_10c3639cd725bd45717f50557c1c45d8"
+    $SoftwarePath = "C:\SoftwaresDump\QTP12.5\UFT1400_DVD.zip"
+    
+    #Extracting
 $shell = New-Object -ComObject shell.application
 $zip = $shell.NameSpace("$SOftwarePath")
 foreach ($item in $zip.items()) {
   $shell.Namespace("$NewDIR").CopyHere($item)
 }
+
+
+    Write-Output 'Preparing temp directory ...'
+    New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -Force | Out-Null
+
+    Write-Output 'Downloading pre-requisite files ...'
+(New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
+
+
+
 
 
 Write-Output 'Installing prerequesties ...'
