@@ -1,10 +1,38 @@
+# Before running the script, set the execution policy
+#Set-ExecutionPolicy RemoteSigned
+#
+
+#Helper Functions
+function Create-Folder {
+    Param ([string]$path)
+    if ((Test-Path $path) -eq $false) 
+    {
+        Write-Host "$path doesn't exist. Creating now.."
+        New-Item -ItemType "directory" -Path $path
+    }
+}
+
+function Download-File{
+    Param ([string]$src, [string] $dst)
+
+    (New-Object System.Net.WebClient).DownloadFile($src,$dst)
+    #Invoke-WebRequest $src -OutFile $dst
+}
+
+function WaitForFile($File) {
+  while(!(Test-Path $File)) {    
+    Start-Sleep -s 10;   
+  }  
+} 
+
+
 #Setup Folders
 
-$setupFolder = "c:\colaberry"
+$setupFolder = "c:\SoftwaresDump"
 Create-Folder "$setupFolder"
 
-Create-Folder "$setupFolder\training"
-$setupFolder = "$setupFolder\training"
+Create-Folder "$setupFolder\sql"
+$setupFolder = "$setupFolder\sql"
 
 Create-Folder "$setupFolder\sqlbi"
 Create-Folder "$setupFolder\sqlbi\datasets"
@@ -14,11 +42,11 @@ $setupFolder = "$setupFolder\sqlbi\installations"
 $os_type = (Get-WmiObject -Class Win32_ComputerSystem).SystemType -match ‘(x64)’
 
 # SQL Server Installation 
-if((Test-Path "$setupFolder\SQLServer2016-SSEI-Dev.exe") -eq $false)
+if((Test-Path "$setupFolder\SoftwaresDump") -eq $false)
 {
     Write-Host "Downloading SQL Server installation file.."
     if ($os_type -eq "True"){
-        Download-File "http://download.microsoft.com/download/4/4/F/44F2C687-BD92-4331-9D4F-882A5AB0D301/SQLServer2016-SSEI-Dev.exe" "$setupFolder\SQLServer2016-SSEI-Dev.exe"
+        Download-File "http://download.microsoft.com/download/B/F/2/BF2EDBB8-004D-47F3-AA2B-FEA897591599/SQLServer2016-SSEI-Expr.exe" "$setupFolder\SQLServer2016-SSEI-Expr.exe"
     }else {
         Write-Host "32 Bit system is not supported"
     }    
@@ -30,7 +58,7 @@ if((Test-Path "$setupFolder\ConfigurationFile.ini") -eq $false)
 {
     Write-Host "Downloading SQL Server installation file.."
     if ($os_type -eq "True"){
-        Download-File "https://raw.githubusercontent.com/Colaberry/training/master/sqlbi/installations/ConfigurationFile.ini" "$setupFolder\ConfigurationFile.ini"
+        Download-File "https://raw.githubusercontent.com/luckygiri/newartifacts/master/ConfigurationFile.ini" "$setupFolder\ConfigurationFile.ini"
     }else {
         Write-Host "32 Bit system is not supported"
     }    
@@ -74,7 +102,7 @@ if((Test-Path "$setupFolder\..\datasets\AdventureWorks2012_Data.mdf") -eq $false
 (Get-Content $setupFolder\ConfigurationFile.ini).replace('USERNAMETBR', "$env:computername\$env:username") | Set-Content $setupFolder\ConfigurationFile_local.ini
 
 Write-Host "Installing SQL Server.."
-Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Dev.exe" -ArgumentList '/ConfigurationFile="c:\colaberry\training\sqlbi\installations\ConfigurationFile_local.ini"', '/MediaPath="c:\colaberry\training\sqlbi\installations"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
+Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Dev.exe" -ArgumentList '/ConfigurationFile="c:\SoftwaresDump\sql\sqlbi\installations\"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
 
 
 Write-Host "Installing SSMS.."
@@ -86,13 +114,18 @@ Start-Process -FilePath "$setupFolder\SSDTSetup.exe" -ArgumentList '/INSTALLALL=
 Add-PSSnapin SqlServerCmdletSnapin* -ErrorAction SilentlyContinue   
 Import-Module SQLPS -WarningAction SilentlyContinue  
 
- 
-
-    Write-Output 'Done!'
+$AttachCmd = @"  
+USE [master]  CREATE DATABASE [AdventureWorks2012] ON (FILENAME ='$setupFolder\..\datasets\AdventureWorks2012_Data.mdf') for ATTACH  
+"@  
+Invoke-Sqlcmd $attachCmd -QueryTimeout 3600 -ServerInstance $env:computername\CB2016SQLSERVER 
+If($?)  
+{  
+       Write-Host 'Attached database sucessfully!'  
+}  
+else  
+{  
+       Write-Host 'Attaching Failed!'  
 }
-finally
-{
-    popd
-}
 
 
+Write-Host 'Installation completed.' 
