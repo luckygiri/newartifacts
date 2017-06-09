@@ -69,7 +69,7 @@ try
 
 Write-Output 'Installing UFT.....'
 
-Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q'  -Wait  
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/s'  -Wait  
 
     Write-Output 'Done!'
 }
