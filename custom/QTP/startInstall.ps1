@@ -68,7 +68,8 @@ try
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")  
-       #Extracting
+       
+    Write-Output 'Extracting QTP ...'
     $shell = New-Object -ComObject shell.application
     $zip = $shell.NameSpace("$SOftwarePath")
     foreach ($item in $zip.items()) {
