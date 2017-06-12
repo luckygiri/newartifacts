@@ -41,18 +41,6 @@ $setupFolder = "$setupFolder\sqlbi\installations"
 
 $os_type = (Get-WmiObject -Class Win32_ComputerSystem).SystemType -match ‘(x64)’
 
-# SQL Server Installation 
-if((Test-Path "$setupFolder\SoftwaresDump") -eq $false)
-{
-    Write-Host "Downloading SQL Server installation file.."
-    if ($os_type -eq "True"){
-        Download-File "http://download.microsoft.com/download/B/F/2/BF2EDBB8-004D-47F3-AA2B-FEA897591599/SQLServer2016-SSEI-Expr.exe" "$setupFolder\SQLServer2016-SSEI-Expr.exe"
-    }else {
-        Write-Host "32 Bit system is not supported"
-    }    
-}
-
-
 # SSMS Installation 
 if((Test-Path "$setupFolder\SSMS-Setup-ENU.exe") -eq $false)
 {
