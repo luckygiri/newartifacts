@@ -80,21 +80,21 @@ try
 
 
 Write-Output 'Installing prerequesties ...'
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\dotnet35_sp1\dotnetfx35_sp1.exe" -ArgumentList '/q' -Wait 
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\dotnet45\dotnetfx45_full_x86_x64.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\msade2010\AccessDatabaseEngine.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\vc2008_sp1_redist_V9030729\vcredist_x86.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\vc2010_redist\vcredist_x86.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\vc2010_X64_redist\vcredist_x64.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\vc2012_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\vc2012_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\vs2008_shell_sp1_isolated_redist\vs_shell_isolated.enu.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\wse20sp3\MicrosoftWSE2.0SP3Runtime.msi" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwareDump\QTP12.5\prerequisites\wse30\MicrosoftWSE3.0Runtime.msi" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\dotnet35_sp1\dotnetfx35_sp1.exe" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\dotnet45\dotnetfx45_full_x86_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\msade2010\AccessDatabaseEngine.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2008_sp1_redist_V9030729\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2010_redist\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2010_X64_redist\vcredist_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2012_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2012_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vs2008_shell_sp1_isolated_redist\vs_shell_isolated.enu.exe" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse20sp3\MicrosoftWSE2.0SP3Runtime.msi" -ArgumentList '/q' -Wait
+Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse30\MicrosoftWSE3.0Runtime.msi" -ArgumentList '/q' -Wait
 
 
 Write-Output 'Installing QTP ...'
-Start-Process "C:\SoftwareDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q'  -Wait  
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q'  -Wait  
    
     Write-Output 'Done!'
 }
