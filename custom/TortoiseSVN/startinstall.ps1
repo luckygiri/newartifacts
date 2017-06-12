@@ -58,8 +58,8 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/Basic%20Softwares/jdk-8u112-windows-x64.exe"
-    $SoftwarePath = "C:\SoftwaresDump\jdk-8u112-windows-x64.exe"
+    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi"
+    $SoftwarePath = "C:\SoftwaresDump\TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi"
 
     Write-Output 'Preparing temp directory ...'
     New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
@@ -69,7 +69,7 @@ try
    
 
  Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\jdk-8u112-windows-x64.exe" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi" -ArgumentList '/q' -Wait 
 
     
 
