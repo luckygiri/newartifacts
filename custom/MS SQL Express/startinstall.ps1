@@ -62,10 +62,11 @@ New-Item "C:\temp" -ItemType Directory -ErrorAction SilentlyContinue
 
 # Download
 (New-Object System.Net.WebClient).DownloadFile("http://download.microsoft.com/download/B/F/2/BF2EDBB8-004D-47F3-AA2B-FEA897591599/SQLServer2016-SSEI-Expr.exe", "C:\temp\SQLServer2016-SSEI-Expr.exe")
+(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/yashg7cr/newartifacts/master/ConfigurationFile.ini", "C:\temp\ConfigurationFile.ini")
 
 Write-Output 'Installing ...'
 
-Start-Process -FilePath "C:\temp\SQLServer2016-SSEI-Expr.exe" -ArgumentList '/ConfigurationFile="C:\temp\Configuration.ini"', '/MediaPath="c:\temp"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
+Start-Process -FilePath "C:\temp\SQLServer2016-SSEI-Expr.exe" -ArgumentList '/ConfigurationFile="C:\temp\ConfigurationFile.ini"', '/MediaPath="c:\temp"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
     
 
    Write-Output 'Done!'
