@@ -117,7 +117,7 @@ Import-Module SQLPS -WarningAction SilentlyContinue
 $AttachCmd = @"  
 USE [master]  CREATE DATABASE [AdventureWorks2012] ON (FILENAME ='$setupFolder\..\datasets\AdventureWorks2012_Data.mdf') for ATTACH  
 "@  
-Invoke-Sqlcmd $attachCmd -QueryTimeout 3600 -ServerInstance $env:computername\CB2016SQLSERVER 
+Invoke-Sqlcmd $attachCmd -QueryTimeout 3600 -ServerInstance $env:computername\SQLSERVER 
 If($?)  
 {  
        Write-Host 'Attached database sucessfully!'  
