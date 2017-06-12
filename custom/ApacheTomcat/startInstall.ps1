@@ -59,10 +59,10 @@ try
 {
     $NewDIR = "C:\SoftwaresDump"
     $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/apache-tomcat-9.0.0.M13.exe"
-    $SoftwarePath = "C:\SoftwaresDump\xamarin\Xamarin.VisualStudio_4.0.1.96.msi"
+    $SoftwarePath = "C:\SoftwaresDump\apache-tomcat-9.0.0.M13.exe"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump\apache-tomcat-9.0.0.M13.exe" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
