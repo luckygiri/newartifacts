@@ -86,18 +86,7 @@ if((Test-Path "$setupFolder\SSDTSetup.exe") -eq $false)
     }    
 }
 
-# Download Adventureworks
-# AdventureWorks2012_Data.mdf
-# https://msftdbprodsamples.codeplex.com/downloads/get/165399
-if((Test-Path "$setupFolder\..\datasets\AdventureWorks2012_Data.mdf") -eq $false)
-{
-    Write-Host "Downloading Adventuresworks data file.."
-    if ($os_type -eq "True"){
-        Download-File "http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=msftdbprodsamples&DownloadId=165399&FileTime=129762331847030000&Build=21031" "$setupFolder\..\datasets\AdventureWorks2012_Data.mdf"
-    }else {
-        Write-Host "32 Bit system is not supported"
-    }    
-}
+
 
 (Get-Content $setupFolder\ConfigurationFile.ini).replace('USERNAMETBR', "$env:computername\$env:username") | Set-Content $setupFolder\ConfigurationFile_local.ini
 
@@ -105,27 +94,6 @@ Write-Host "Installing SQL Server.."
 Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Expr.exe" -ArgumentList '/ConfigurationFile="c:\SoftwaresDump\sql\sqlbi\installations\ConfigurationFile_local.ini"', '/MediaPath="c:\SoftwaresDump\sql\sqlbi\installations"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
 
 
-Write-Host "Installing SSMS.."
-Start-Process -FilePath "$setupFolder\SSMS-Setup-ENU.exe" -ArgumentList '/install','/passive' -Wait
-
-Write-Host "Installing SSDT.."
-Start-Process -FilePath "$setupFolder\SSDTSetup.exe" -ArgumentList '/INSTALLALL=1', '/passive', '/promptrestart' -Wait
-
-Add-PSSnapin SqlServerCmdletSnapin* -ErrorAction SilentlyContinue   
-Import-Module SQLPS -WarningAction SilentlyContinue  
-
-$AttachCmd = @"  
-USE [master]  CREATE DATABASE [AdventureWorks2012] ON (FILENAME ='$setupFolder\..\datasets\AdventureWorks2012_Data.mdf') for ATTACH  
-"@  
-Invoke-Sqlcmd $attachCmd -QueryTimeout 3600 -ServerInstance $env:computername\SQLSERVER 
-If($?)  
-{  
-       Write-Host 'Attached database sucessfully!'  
-}  
-else  
-{  
-       Write-Host 'Attaching Failed!'  
-}
 
 
 Write-Host 'Installation completed.'
