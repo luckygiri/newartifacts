@@ -76,12 +76,6 @@ if((Test-Path "$setupFolder\SSDTSetup.exe") -eq $false)
 }
 
 
-
-
-Write-Host "Installing SQL Server.."
-Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Expr.exe" -ArgumentList '/ConfigurationFile="c:\SoftwaresDump\sql\sqlbi\installations\ConfigurationFile_local.ini"', '/MediaPath="c:\SoftwaresDump\sql\sqlbi\installations"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
-
-
 Write-Host "Installing SSMS.."
 Start-Process -FilePath "$setupFolder\SSMS-Setup-ENU.exe" -ArgumentList '/install','/passive' -Wait
 
