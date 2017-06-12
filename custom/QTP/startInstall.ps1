@@ -94,7 +94,7 @@ Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse30\MicrosoftWSE3.0Runti
 
 
 Write-Output 'Installing QTP ...'
-Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q'  -Wait   
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q'  -Wait  
    
     Write-Output 'Done!'
 }

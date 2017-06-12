@@ -58,8 +58,8 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://dl1.filehippo.com/b273a1b9e976427c834340ccdd2fa269/mysql-5.6.36-win32.msi?ttl=1496934475&token=b55ab79135371d569b4cf43c80688e19"
-    $SoftwarePath = "C:\SoftwaresDump\mysql-5.6.36-win32.msi"
+    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/mysql-installer-community-5.7.16.0.msi"
+    $SoftwarePath = "C:\SoftwaresDump\mysql-installer-community-5.7.16.0.msi"
 
     Write-Output 'Preparing temp directory ...'
     New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
@@ -69,7 +69,7 @@ try
    
 
  Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\mysql-5.6.36-win32.msi" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\mysql-installer-community-5.7.16.0.msi" -ArgumentList '/q' -Wait 
 
     
 
