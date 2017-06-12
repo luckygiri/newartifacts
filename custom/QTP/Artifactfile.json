@@ -1,6 +1,6 @@
 {
  "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
-  "title": "HP QTP prerequesties",
+  "title": "HP QTP 12.5",
   "publisher": "HP",
   "description": "Install HP QTP prerequesties with default options",
   "tags": [
