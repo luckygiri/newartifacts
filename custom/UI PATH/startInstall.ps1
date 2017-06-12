@@ -58,7 +58,7 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.g7crm4l.org/softwares/UiPathStudio.msi"
+    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/UiPathStudio.msi"
     $SoftwarePath = "C:\SoftwaresDump\UiPathStudio.msi"
 
     Write-Output 'Preparing temp directory ...'
