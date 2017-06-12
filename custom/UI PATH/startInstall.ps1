@@ -57,23 +57,29 @@ trap
 
 try
 {
+ 
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/UiPathStudio.msi"
-    $SoftwarePath = "C:\SoftwaresDump\UiPathStudio.msi"
+    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/UiPathStudio.zip"
+    $SoftwarePath = "C:\SoftwaresDump\UiPathStudio.zip"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump\UiPathStudio.msi" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
-    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
+    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")  
+       
+    Write-Output 'Extracting  ...'
+    $shell = New-Object -ComObject shell.application
+    $zip = $shell.NameSpace("$SOftwarePath")
+    foreach ($item in $zip.items()) {
+    $shell.Namespace("$NewDIR").CopyHere($item)
+}
+
+
+Write-Output 'Installing ...'
+Start-Process "C:\SoftwaresDump\UiPathStudio\UiPathStudio.msi" -ArgumentList '/q'  -Wait  
    
-
- Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\UiPathStudio.msi" -ArgumentList '/q' -Wait 
-
-    
-
-    Write-Output 'Done!'
+Write-Output 'Done!'
 }
 finally
 {
