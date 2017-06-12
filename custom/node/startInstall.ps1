@@ -67,17 +67,16 @@ try
     New-Item "C:\SoftwaresDump" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
-    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")  
-       
-}
-
-
-
+    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
+   
 
 Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\node-v6.9.2-x64.msi" -ArgumentList '/q'  -Wait  
-   
-    Write-Output 'Done!'
+Start-Process "C:\SoftwaresDump\node-v6.9.2-x64.msi" -ArgumentList '/q' -Wait 
+
+    
+
+Write-Output 'Done!'
+  
 }
 finally
 {
