@@ -60,17 +60,16 @@ try
  
  
     $NewDIR = "C:\SoftwaresDump\QTP12.5"
-    $SoftwareWebLink = "http://h30537.www3.hpe.com/prdownloads/UFT1400_DVD.zip?downloadid=Wu6ezJnM633sYkwgWfU8lTaFcDNYpqzL9L3-Kq6nB4E0VkoTjOvG7q9bBg6L-q3_NJS0cpG0ySDOo8VWqTIagwwgzAJcYe8oZXk32s_GIzgV7S3UChkKlZsFQfNOd1IO&merchantId=PRONQ_TRY&dlm=ON&rnid=1.0&bpid=SGBU&egid=F&__dlk__=1497078000_10c3639cd725bd45717f50557c1c45d8"
-    $SoftwarePath = "C:\SoftwaresDump\QTP12.5\UFT1400_DVD.zip"
+    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/QTP12.5/QTP%2012%20-%20HP%20UFT%2012.54.zip"
+    $SoftwarePath = "C:\SoftwaresDump\QTP12.5\QTP 12 - HP UFT 12.54.zip"
 
     Write-Output 'Preparing temp directory ...'
     New-Item "C:\SoftwaresDump\QTP12.5" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
-    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
-     (New-Object System.Net.WebClient).DownloadFile("https://download.microsoft.com/download/D/1/3/D13E3150-3BB2-4B22-9D8A-47EE2D609FFF/Windows8.1-KB2999226-x64.msu", "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu")
-    
-       #Extracting
+    (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")  
+       
+    Write-Output 'Extracting QTP ...'
     $shell = New-Object -ComObject shell.application
     $zip = $shell.NameSpace("$SOftwarePath")
     foreach ($item in $zip.items()) {
@@ -92,22 +91,11 @@ Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2012_redist_x86\vcredist
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vs2008_shell_sp1_isolated_redist\vs_shell_isolated.enu.exe" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse20sp3\MicrosoftWSE2.0SP3Runtime.msi" -ArgumentList '/q' -Wait
 Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\wse30\MicrosoftWSE3.0Runtime.msi" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x64.msi" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\pdm\ScriptDebugging_x86.msi" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x64\vcredist_x64.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\VC2015Prerequisite.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\prerequisites\vc2015_redist_x86\vcredist_x86.exe" -ArgumentList '/q' -Wait
-Start-Process "C:\SoftwaresDump\QTP12.5\Windows8.1-KB2999226-x64.msu" -ArgumentList '/q' -Wait
 
 
-
-
-
- 
-
-
-    
-
+Write-Output 'Installing QTP ...'
+Start-Process "C:\SoftwaresDump\QTP12.5\Unified Functional Testing\EN\setup.exe" -ArgumentList '/q'  -Wait   
+   
     Write-Output 'Done!'
 }
 finally

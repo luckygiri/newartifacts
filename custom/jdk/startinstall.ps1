@@ -58,7 +58,7 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://dl2.filehippo.com/d16ccce1c8ab424491e1c5db426ce03b/jdk-8u131-windows-x64.exe?ttl=1496935762&token=e9b18a1b17c0c575c727092aad11e8ae"
+    $SoftwareWebLink = "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-windows-x64.exe?AuthParam=1497016427_1a864bad9975ec3090b73624d15747f5"
     $SoftwarePath = "C:\SoftwaresDump\jdk-8u131-windows-x64.exe"
 
     Write-Output 'Preparing temp directory ...'
@@ -79,5 +79,3 @@ finally
 {
     popd
 }
-
-
