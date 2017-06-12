@@ -1,0 +1,15 @@
+{
+ "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
+  "title": "MS SQL Express",
+  "publisher": "MS SQL Express",
+  "description": "InstallMS SQL Express with default options",
+  "tags": [
+    "Windows",
+   "MS SQL Express"
+  ],
+  "iconUri": "",
+  "targetOsType": "Windows",
+  "runCommand": {
+    "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./startInstall.ps1\"')]"
+  }
+}
