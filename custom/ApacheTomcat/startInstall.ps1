@@ -57,19 +57,19 @@ trap
 
 try
 {
-    $NewDIR = "C:\SoftwaresDump\xamarin"
-    $SoftwareWebLink = "http://artifacts.g7crm4l.org/softwares/Microsoft%20Softwares/Xamarin.VisualStudio_4.0.1.96.msi"
+    $NewDIR = "C:\SoftwaresDump"
+    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/apache-tomcat-9.0.0.M13.exe"
     $SoftwarePath = "C:\SoftwaresDump\xamarin\Xamarin.VisualStudio_4.0.1.96.msi"
 
     Write-Output 'Preparing temp directory ...'
-    New-Item "C:\SoftwaresDump\xamarin\" -ItemType Directory -Force | Out-Null
+    New-Item "C:\SoftwaresDump\apache-tomcat-9.0.0.M13.exe" -ItemType Directory -Force | Out-Null
 
     Write-Output 'Downloading pre-requisite files ...'
     (New-Object System.Net.WebClient).DownloadFile("$SoftwareWebLink", "$SoftwarePath")
    
 
  Write-Output 'Installing ...'
-Start-Process "C:\SoftwaresDump\xamarin\Xamarin.VisualStudio_4.0.1.96.msi" -ArgumentList '/q' -Wait 
+Start-Process "C:\SoftwaresDump\apache-tomcat-9.0.0.M13.exe" -ArgumentList '/s' -Wait 
 
     
 
