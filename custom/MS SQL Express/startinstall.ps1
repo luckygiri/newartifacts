@@ -68,7 +68,8 @@ if((Test-Path "$setupFolder\ConfigurationFile.ini") -eq $false)
 (Get-Content $setupFolder\ConfigurationFile.ini).replace('USERNAMETBR', "$env:computername\$env:username") | Set-Content $setupFolder\ConfigurationFile_local.ini
 
 Write-Host "Installing SQL Server.."
-Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Dev.exe" -ArgumentList '/ConfigurationFile="c:\SoftwaresDump\sql\sqlbi\installations\"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
+Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Expr.exe" -ArgumentList '/ConfigurationFile="c:\SoftwaresDump\sql\sqlbi\installations\ConfigurationFile_local.ini"', '/MediaPath="c:\SoftwaresDump\sql\sqlbi\installations"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
+
 
 
 Write-Host 'Installation completed.' 
