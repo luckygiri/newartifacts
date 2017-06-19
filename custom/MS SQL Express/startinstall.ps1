@@ -42,7 +42,7 @@ $setupFolder = "$setupFolder\sqlbi\installations"
 $os_type = (Get-WmiObject -Class Win32_ComputerSystem).SystemType -match ‘(x64)’
 
 # SQL Server Installation 
-if((Test-Path "$setupFolder\SoftwaresDump") -eq $false)
+if((Test-Path "$setupFolder\SQLServer2016-SSEI-Expr.exe") -eq $false)
 {
     Write-Host "Downloading SQL Server installation file.."
     if ($os_type -eq "True"){
