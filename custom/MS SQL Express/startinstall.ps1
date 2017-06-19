@@ -64,12 +64,42 @@ if((Test-Path "$setupFolder\ConfigurationFile.ini") -eq $false)
     }    
 }
 
+# SSMS Installation 
+if((Test-Path "$setupFolder\SSMS-Setup-ENU.exe") -eq $false)
+{
+    Write-Host "Downloading SSMS installation file.."
+    if ($os_type -eq "True"){
+        Download-File "https://download.microsoft.com/download/3/1/D/31D734E0-BFE8-4C33-A9DE-2392808ADEE6/SSMS-Setup-ENU.exe" "$setupFolder\SSMS-Setup-ENU.exe"
+    }else {
+        Write-Host "32 Bit system is not supported"
+    }    
+}
+
+# SSDT Installation 
+if((Test-Path "$setupFolder\SSDTSetup.exe") -eq $false)
+{
+    Write-Host "Downloading SSDT installation file.."
+    if ($os_type -eq "True"){
+        Download-File "https://download.microsoft.com/download/9/C/7/9C749FF7-7AD2-409A-BF75-69238295A668/Dev14/EN/SSDTSetup.exe" "$setupFolder\SSDTSetup.exe"
+    }else {
+        Write-Host "32 Bit system is not supported"
+    }    
+}
+
+
+
+
+
 
 (Get-Content $setupFolder\ConfigurationFile.ini).replace('USERNAMETBR', "$env:computername\$env:username") | Set-Content $setupFolder\ConfigurationFile_local.ini
 
 Write-Host "Installing SQL Server.."
 Start-Process -FilePath "$setupFolder\SQLServer2016-SSEI-Expr.exe" -ArgumentList '/ConfigurationFile="c:\SoftwaresDump\sql\sqlbi\installations\ConfigurationFile_local.ini"', '/MediaPath="c:\SoftwaresDump\sql\sqlbi\installations"', '/IAcceptSqlServerLicenseTerms', '/ENU', '/QS'  -Wait
 
+Write-Host "Installing SSMS.."
+Start-Process -FilePath "$setupFolder\SSMS-Setup-ENU.exe" -ArgumentList '/install','/passive' -Wait
 
+Write-Host "Installing SSDT.."
+Start-Process -FilePath "$setupFolder\SSDTSetup.exe" -ArgumentList '/INSTALLALL=1', '/passive', '/promptrestart' -Wait
 
 Write-Host 'Installation completed.' 
