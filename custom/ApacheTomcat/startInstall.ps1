@@ -58,7 +58,7 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/apache-tomcat-9.0.0.M13.exe"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/apache-tomcat-9.0.0.M13.exe"
     $SoftwarePath = "C:\SoftwaresDump\apache-tomcat-9.0.0.M13.exe"
 
     Write-Output 'Preparing temp directory ...'
