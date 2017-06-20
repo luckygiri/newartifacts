@@ -1,6 +1,6 @@
 
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/mysql-installer-community-5.7.16.0.msi"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/mysql-installer-community-5.7.16.0.msi"
     $SoftwarePath = "C:\SoftwaresDump\mysql-installer-community-5.7.16.0.msi"
 
     Write-Output 'Preparing temp directory ...'
