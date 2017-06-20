@@ -2,7 +2,7 @@
  
  
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/node-v6.9.2-x64.msi"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/node-v6.9.2-x64.msi"
     $SoftwarePath = "C:\SoftwaresDump\node-v6.9.2-x64.msi"
 
     Write-Output 'Preparing temp directory ...'
