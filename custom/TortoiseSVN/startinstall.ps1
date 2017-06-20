@@ -58,7 +58,7 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi"
     $SoftwarePath = "C:\SoftwaresDump\TortoiseSVN-1.9.4.27285-x64-svn-1.9.4.msi"
 
     Write-Output 'Preparing temp directory ...'
