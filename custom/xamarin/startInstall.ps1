@@ -58,7 +58,7 @@ trap
 try
 {
     $NewDIR = "C:\SoftwaresDump\xamarin"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/Microsoft%20Softwares/Xamarin.VisualStudio_4.0.1.96.msi"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/Microsoft%20Softwares/Xamarin.VisualStudio_4.0.1.96.msi"
     $SoftwarePath = "C:\SoftwaresDump\xamarin\Xamarin.VisualStudio_4.0.1.96.msi"
 
     Write-Output 'Preparing temp directory ...'
