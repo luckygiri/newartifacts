@@ -59,7 +59,7 @@ try
 {
  
     $NewDIR = "C:\SoftwaresDump"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/UiPathStudio.zip"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/UiPathStudio.zip"
     $SoftwarePath = "C:\SoftwaresDump\UiPathStudio.zip"
 
     Write-Output 'Preparing temp directory ...'
