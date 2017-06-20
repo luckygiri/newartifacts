@@ -60,7 +60,7 @@ try
  
  
     $NewDIR = "C:\SoftwaresDump\QTP12.5"
-    $SoftwareWebLink = "http://artifacts.mphasism4l.cloud/softwares/QTP12.5/QTP%2012%20-%20HP%20UFT%2012.54.zip"
+    $SoftwareWebLink = "http://artifacts.g7crm4l.org/Softwares/QTP12.5/QTP%2012%20-%20HP%20UFT%2012.54.zip"
     $SoftwarePath = "C:\SoftwaresDump\QTP12.5\QTP 12 - HP UFT 12.54.zip"
 
     Write-Output 'Preparing temp directory ...'
